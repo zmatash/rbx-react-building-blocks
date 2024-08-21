@@ -34,5 +34,5 @@ export function useHold(ref: RefObject<GuiObject>, isEnabled: boolean) {
 		}
 	}, [ref, isHovered, isEnabled]);
 
-	return isHolding;
+	return { isHolding, isHovered };
 }

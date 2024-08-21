@@ -1,6 +1,6 @@
 {
   "name": "@mattrbx/react-building-blocks",
-  "version": "1.1.7",
+  "version": "1.2.4",
   "description": "",
   "main": "out/init.lua",
   "scripts": {

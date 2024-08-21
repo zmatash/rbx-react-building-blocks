@@ -14,7 +14,7 @@ export interface FrameProps<T extends Instance = Frame> extends React.PropsWithC
 	visible?: boolean | React.Binding<boolean>;
 	zIndex?: number | React.Binding<number>;
 	layoutOrder?: number | React.Binding<number>;
-	cornerRadius?: UDim | React.Binding<UDim>;
+	cornerRadius?: number;
 	automaticSize?: Enum.AutomaticSize | React.Binding<Enum.AutomaticSize> | "X" | "Y" | "XY";
 	padding?: UDim | React.Binding<UDim>;
 	borderMode?: Enum.BorderMode | React.Binding<Enum.BorderMode>;
@@ -23,6 +23,8 @@ export interface FrameProps<T extends Instance = Frame> extends React.PropsWithC
 }
 
 export const Frame = forwardRef((props: FrameProps, ref: Ref<Frame>) => {
+	const corners = props.cornerRadius ? <uicorner CornerRadius={new UDim(0, props.cornerRadius)} /> : undefined;
+
 	return (
 		<frame
 			ref={ref}
@@ -44,7 +46,7 @@ export const Frame = forwardRef((props: FrameProps, ref: Ref<Frame>) => {
 			AutomaticSize={props.automaticSize ?? "None"}
 		>
 			{props.children}
-			{props.cornerRadius && <uicorner CornerRadius={props.cornerRadius} />}
+			{corners}
 		</frame>
 	);
 });

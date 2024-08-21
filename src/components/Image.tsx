@@ -14,6 +14,7 @@ export interface ImageProps extends FrameProps<ImageLabel> {
 }
 
 export function Image(props: ImageProps) {
+	const corners = props.cornerRadius ? <uicorner CornerRadius={new UDim(0, props.cornerRadius)} /> : undefined;
 	return (
 		<imagelabel
 			Image={props.image ?? "rbxasset://textures/ui/GuiImagePlaceholder.png"}
@@ -40,7 +41,7 @@ export function Image(props: ImageProps) {
 			Change={props.change}
 		>
 			{props.children}
-			{props.cornerRadius && <uicorner CornerRadius={props.cornerRadius} />}
+			{corners}
 		</imagelabel>
 	);
 }

@@ -11,13 +11,19 @@ import {
 
 type MotionType = "tween" | "spring" | "linear" | "immediate";
 
-export function useMotion<T extends MotionGoal>(
+export function useAutoMotion<T extends MotionGoal, K = TweenOptions | SpringOptions | LinearOptions>(
 	setValue: Dispatch<SetStateAction<T>>,
-	config: TweenOptions | SpringOptions | LinearOptions = {},
-	cancelFlag: boolean = false,
 	motionType: MotionType,
+	cancelFlag: boolean = false,
 ) {
 	const motionRef = useRef<Motion<T>>();
+
+	const cancelMotion = () => {
+		if (motionRef.current) {
+			motionRef.current.stop();
+			motionRef.current = undefined;
+		}
+	};
 
 	useEffect(() => {
 		if (cancelFlag && motionRef.current) {
@@ -32,8 +38,12 @@ export function useMotion<T extends MotionGoal>(
 		};
 	}, [cancelFlag]);
 
-	const doMotion = <U extends PartialMotionGoal<T>>(start: T, goal: U): Promise<void> => {
+	const doMotion = <U extends PartialMotionGoal<T>>(start: T, goal: U, config?: K): Promise<void> => {
 		return new Promise((resolve) => {
+			if (motionRef.current) {
+				cancelMotion();
+			}
+
 			const motion = createMotion(start);
 			motionRef.current = motion;
 
@@ -52,21 +62,6 @@ export function useMotion<T extends MotionGoal>(
 					break;
 			}
 
-			switch (motionType) {
-				case "immediate":
-					motion.immediate(goal);
-					break;
-				case "linear":
-					motion.linear(goal, config as LinearOptions);
-					break;
-				case "spring":
-					motion.spring(goal, config as SpringOptions);
-					break;
-				case "tween":
-					motion.tween(goal, config as TweenOptions);
-					break;
-			}
-
 			motion.start();
 
 			motion.onStep((value) => {
@@ -80,5 +75,5 @@ export function useMotion<T extends MotionGoal>(
 		});
 	};
 
-	return useMemo(() => doMotion, []);
+	return { doMotion: useMemo(() => doMotion, []), cancelMotion: useMemo(() => cancelMotion, []) };
 }

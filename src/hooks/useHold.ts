@@ -2,9 +2,9 @@ import { RefObject, useEffect, useState } from "@rbxts/react";
 import { UserInputService } from "@rbxts/services";
 import useHover from "./useHover";
 
-export function useHold(ref: RefObject<GuiObject>) {
+export function useHold(ref: RefObject<GuiObject>, isEnabled: boolean) {
 	const [isHolding, setIsHolding] = useState(false);
-	const isHovered = useHover(ref);
+	const isHovered = useHover(ref, isEnabled);
 
 	const listenForInputStart = (node: GuiObject) => {
 		return node.InputBegan.Connect((input) => {
@@ -25,14 +25,14 @@ export function useHold(ref: RefObject<GuiObject>) {
 
 	useEffect(() => {
 		const node = ref.current;
-		if (node && isHovered) {
+		if (node && isHovered && isEnabled) {
 			const inputStart = listenForInputStart(node);
 
 			return () => {
 				inputStart.Disconnect();
 			};
 		}
-	}, [ref, isHovered]);
+	}, [ref, isHovered, isEnabled]);
 
 	return isHolding;
 }

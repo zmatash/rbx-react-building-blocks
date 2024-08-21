@@ -1,11 +1,11 @@
 import { useEffect, useState } from "@rbxts/react";
 
-export function useHover(ref: React.RefObject<GuiObject>) {
+export function useHover(ref: React.RefObject<GuiObject>, isEnabled: boolean) {
 	const [isHovered, setIsHovered] = useState(false);
 
 	useEffect(() => {
 		const node = ref.current;
-		if (node) {
+		if (node && isEnabled) {
 			const handleMouseOver = () => setIsHovered(true);
 			const handleMouseOut = () => setIsHovered(false);
 
@@ -17,7 +17,7 @@ export function useHover(ref: React.RefObject<GuiObject>) {
 				mouseOut.Disconnect();
 			};
 		}
-	}, [ref]);
+	}, [ref, isEnabled]);
 
 	return isHovered;
 }

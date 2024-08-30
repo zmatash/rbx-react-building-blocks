@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useMemo, useRef } from "@rbxts/react";
+import { Dispatch, SetStateAction, useMemo, useRef } from "@rbxts/react";
 import {
 	LinearOptions,
 	Motion,
@@ -14,7 +14,6 @@ type MotionType = "tween" | "spring" | "linear" | "immediate";
 export function useAutoMotion<T extends MotionGoal, K = TweenOptions | SpringOptions | LinearOptions>(
 	setValue: Dispatch<SetStateAction<T>>,
 	motionType: MotionType,
-	cancelFlag: boolean = false,
 ) {
 	const motionRef = useRef<Motion<T>>();
 
@@ -24,19 +23,6 @@ export function useAutoMotion<T extends MotionGoal, K = TweenOptions | SpringOpt
 			motionRef.current = undefined;
 		}
 	};
-
-	useEffect(() => {
-		if (cancelFlag && motionRef.current) {
-			motionRef.current.stop();
-			motionRef.current = undefined;
-		}
-
-		return () => {
-			if (motionRef.current) {
-				motionRef.current.stop();
-			}
-		};
-	}, [cancelFlag]);
 
 	const doMotion = <U extends PartialMotionGoal<T>>(start: T, goal: U, config?: K): Promise<void> => {
 		return new Promise((resolve) => {

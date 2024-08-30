@@ -6,5 +6,5 @@ export function useAutoSpring<T extends MotionGoal, SpringOptions>(
 	setValue: Dispatch<SetStateAction<T>>,
 	cancelFlag: boolean = false,
 ) {
-	return useAutoMotion<T, SpringOptions>(setValue, "spring", cancelFlag);
+	return useAutoMotion<T, SpringOptions>(setValue, "spring");
 }

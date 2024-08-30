@@ -6,5 +6,5 @@ export function useAutoTween<T extends MotionGoal, TweenOptions>(
 	setValue: Dispatch<SetStateAction<T>>,
 	cancelFlag: boolean = false,
 ) {
-	return useAutoMotion<T, TweenOptions>(setValue, "spring", cancelFlag);
+	return useAutoMotion<T, TweenOptions>(setValue, "spring");
 }

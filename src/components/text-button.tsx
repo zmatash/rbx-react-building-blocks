@@ -25,7 +25,7 @@ export const TextButton = forwardRef((props: TextButtonProps, ref: React.Ref<Tex
 		...props.event,
 	};
 
-	const corners = props.cornerRadius ? <uicorner CornerRadius={new UDim(0, props.cornerRadius)} /> : undefined;
+	const corners = props.cornerRadius ? <uicorner CornerRadius={props.cornerRadius} /> : undefined;
 
 	return (
 		<textbutton

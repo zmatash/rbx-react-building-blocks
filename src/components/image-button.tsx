@@ -27,7 +27,7 @@ export const ImageButton = forwardRef((props: ImageButtonProps, ref: React.Ref<I
 		MouseLeave: onMouseLeave && (() => onMouseLeave()),
 		...props.event,
 	};
-	const corners = props.cornerRadius ? <uicorner CornerRadius={new UDim(0, props.cornerRadius)} /> : undefined;
+	const corners = props.cornerRadius ? <uicorner CornerRadius={props.cornerRadius} /> : undefined;
 
 	return (
 		<imagebutton

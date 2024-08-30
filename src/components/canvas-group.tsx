@@ -8,7 +8,7 @@ export interface CanvasGroupProps extends FrameProps<CanvasGroup> {
 }
 
 export const CanvasGroup = forwardRef((props: CanvasGroupProps, ref: Ref<CanvasGroup>) => {
-	const corners = props.cornerRadius ? <uicorner CornerRadius={new UDim(0, props.cornerRadius)} /> : undefined;
+	const corners = props.cornerRadius ? <uicorner CornerRadius={props.cornerRadius} /> : undefined;
 	return (
 		<canvasgroup
 			ref={ref}

@@ -1,8 +1,6 @@
 import React from "@rbxts/react";
-import { Resources } from "../resources/resources";
+import { FontName } from "../resources/gui-fonts";
 import { FrameProps } from "./frame";
-
-const fonts = Resources.fonts;
 
 export interface TextProps<T extends Instance = TextLabel> extends FrameProps<T> {
 	font?: Font;
@@ -26,7 +24,7 @@ export function Text(props: TextProps) {
 	return (
 		<textlabel
 			Font={Enum.Font.Unknown}
-			FontFace={props.font || fonts.inter.regular}
+			FontFace={props.font || Font.fromName(FontName.Montserrat, Enum.FontWeight.Regular)}
 			Text={props.text}
 			TextColor3={props.textColor}
 			TextSize={props.textSize}

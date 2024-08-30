@@ -1,3 +1,4 @@
+export * from "./components/adjustable-image-button";
 export * from "./components/canvas-group";
 export * from "./components/frame";
 export * from "./components/Image";

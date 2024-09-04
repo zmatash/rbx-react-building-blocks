@@ -21,5 +21,3 @@ export function useHover(ref: React.RefObject<GuiObject>, isEnabled: boolean) {
 
 	return isHovered;
 }
-
-export default useHover;

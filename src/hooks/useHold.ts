@@ -1,6 +1,6 @@
 import { RefObject, useEffect, useState } from "@rbxts/react";
 import { UserInputService } from "@rbxts/services";
-import useHover from "./useHover";
+import { useHover } from "./useHover";
 
 export function useHold(ref: RefObject<GuiObject>, isEnabled: boolean) {
 	const [isHolding, setIsHolding] = useState(false);
@@ -34,5 +34,5 @@ export function useHold(ref: RefObject<GuiObject>, isEnabled: boolean) {
 		}
 	}, [ref, isHovered, isEnabled]);
 
-	return { isHolding, isHovered };
+	return $tuple(isHovered, isHolding);
 }

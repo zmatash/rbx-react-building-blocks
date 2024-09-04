@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useMemo, useRef } from "@rbxts/react";
+import { Dispatch, SetStateAction, useRef } from "@rbxts/react";
 import {
 	LinearOptions,
 	Motion,
@@ -61,5 +61,5 @@ export function useAutoMotion<T extends MotionGoal, K = TweenOptions | SpringOpt
 		});
 	};
 
-	return { doMotion: useMemo(() => doMotion, []), cancelMotion: useMemo(() => cancelMotion, []) };
+	return $tuple(doMotion, cancelMotion);
 }

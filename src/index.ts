@@ -12,6 +12,8 @@ export * from "./hooks/providers/rem-provider";
 export * from "./hooks/ripple-hooks/auto/useAutoMotion";
 export * from "./hooks/ripple-hooks/auto/useAutoSpring";
 export * from "./hooks/ripple-hooks/auto/useAutoTween";
+export * from "./hooks/useAbsolutePosition";
+export * from "./hooks/useAbsoluteSize";
 export * from "./hooks/useConditions";
 export * from "./hooks/useHasMounted";
 export * from "./hooks/useHold";

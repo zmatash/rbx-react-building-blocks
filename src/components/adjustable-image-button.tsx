@@ -11,7 +11,6 @@ export interface AdjustableImageButtonProps extends FrameProps<TextButton> {
 	imageSize?: UDim2 | React.Binding<UDim2>;
 	backgroundColor?: Color3 | React.Binding<Color3>;
 	backgroundTransparency?: number | React.Binding<number>;
-	cornerRadius?: UDim | React.Binding<UDim>;
 	onClick?: () => void;
 	onMouse1Down?: () => void;
 	onMouse1Up?: () => void;
@@ -31,7 +30,6 @@ export const AdjustableImageButton = forwardRef((props: AdjustableImageButtonPro
 			onMouse1Up={props.onMouse1Up}
 			onMouseEnter={props.onMouseEnter}
 			onMouseLeave={props.onMouseLeave}
-			cornerRadius={props.cornerRadius}
 			text=""
 		>
 			<Image

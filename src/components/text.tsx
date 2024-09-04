@@ -20,7 +20,7 @@ export interface TextProps<T extends Instance = TextLabel> extends FrameProps<T>
 }
 
 export function Text(props: TextProps) {
-	const corners = props.cornerRadius ? <uicorner CornerRadius={props.cornerRadius} /> : undefined;
+	const corners = props.cornerRadius ? <uicorner CornerRadius={new UDim(0, props.cornerRadius)} /> : undefined;
 	return (
 		<textlabel
 			Font={Enum.Font.Unknown}
@@ -38,7 +38,7 @@ export function Text(props: TextProps) {
 			RichText={props.richText}
 			MaxVisibleGraphemes={props.maxVisibleGraphemes}
 			Size={props.size}
-			AutomaticSize={props.textAutoResize}
+			AutomaticSize={props.automaticSize}
 			Position={props.position}
 			AnchorPoint={props.anchorPoint}
 			BackgroundColor3={props.backgroundColor}

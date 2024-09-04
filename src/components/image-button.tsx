@@ -9,6 +9,8 @@ export interface ImageButtonProps extends FrameProps<ImageButton> {
 	imageTransparency?: number | React.Binding<number>;
 	imageColor?: Color3 | React.Binding<Color3>;
 	scaleType?: React.InferEnumNames<Enum.ScaleType> | "Stretch" | "Slice" | "Tile" | "Fit" | "Crop";
+	sliceScale?: number | React.Binding<number>;
+	sliceCenter?: Rect | React.Binding<Rect>;
 	onClick?: () => void;
 	onMouse1Down?: () => void;
 	onMouse1Up?: () => void;
@@ -27,7 +29,7 @@ export const ImageButton = forwardRef((props: ImageButtonProps, ref: React.Ref<I
 		MouseLeave: onMouseLeave && (() => onMouseLeave()),
 		...props.event,
 	};
-	const corners = props.cornerRadius ? <uicorner CornerRadius={props.cornerRadius} /> : undefined;
+	const corners = props.cornerRadius ? <uicorner CornerRadius={new UDim(0, props.cornerRadius)} /> : undefined;
 
 	return (
 		<imagebutton
@@ -39,6 +41,8 @@ export const ImageButton = forwardRef((props: ImageButtonProps, ref: React.Ref<I
 			PressedImage={props.pressedImage}
 			Active={props.active}
 			ScaleType={props.scaleType}
+			SliceCenter={props.sliceCenter}
+			SliceScale={props.sliceScale}
 			AutoButtonColor={false}
 			Size={props.size}
 			Position={props.position}
@@ -49,7 +53,9 @@ export const ImageButton = forwardRef((props: ImageButtonProps, ref: React.Ref<I
 			Visible={props.visible}
 			ZIndex={props.zIndex}
 			LayoutOrder={props.layoutOrder}
-			BorderSizePixel={0}
+			BorderSizePixel={props.borderSizePixel || 0}
+			BorderColor3={props.borderColor}
+			BorderMode={props.borderMode}
 			Event={event}
 			Change={props.change}
 		>

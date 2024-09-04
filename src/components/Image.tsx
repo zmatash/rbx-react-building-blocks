@@ -1,4 +1,4 @@
-import React from "@rbxts/react";
+import React, { forwardRef } from "@rbxts/react";
 import { FrameProps } from "./frame";
 
 export interface ImageProps extends FrameProps<ImageLabel> {
@@ -13,10 +13,11 @@ export interface ImageProps extends FrameProps<ImageLabel> {
 	tileSize?: UDim2 | React.Binding<UDim2>;
 }
 
-export function Image(props: ImageProps) {
-	const corners = props.cornerRadius ? <uicorner CornerRadius={props.cornerRadius} /> : undefined;
+export const Image = forwardRef<ImageLabel, ImageProps>((props, ref) => {
+	const corners = props.cornerRadius ? <uicorner CornerRadius={new UDim(0, props.cornerRadius)} /> : undefined;
 	return (
 		<imagelabel
+			ref={ref}
 			Image={props.image ?? "rbxasset://textures/ui/GuiImagePlaceholder.png"}
 			ImageColor3={props.imageColor}
 			ImageTransparency={props.imageTransparency}
@@ -44,4 +45,4 @@ export function Image(props: ImageProps) {
 			{corners}
 		</imagelabel>
 	);
-}
+});

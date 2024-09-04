@@ -27,4 +27,17 @@ export const GuiIcons = {
 	notches_64: {
 		bold: "rbxassetid://99669017913455",
 	},
+	grid_64: {
+		regular: "rbxassetid://135583868906881",
+		bold: "rbxassetid://76768985108323",
+	},
+	dev_logo_filled_64: {
+		regular: "rbxassetid://120580136900910",
+	},
+	terminal_window_64: {
+		regular: "rbxassetid://85709373376206",
+	},
+	hexagon_64: {
+		regular: "rbxassetid://128681531272243",
+	},
 };

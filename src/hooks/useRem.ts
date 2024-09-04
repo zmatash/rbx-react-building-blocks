@@ -8,5 +8,5 @@ export function useRem() {
 		return px * remSize;
 	}
 
-	return { remSize, toRem };
+	return $tuple(toRem, remSize);
 }

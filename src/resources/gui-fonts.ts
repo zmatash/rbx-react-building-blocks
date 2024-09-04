@@ -1,6 +1,6 @@
 export enum FontName {
 	Montserrat = "Montserrat",
 	Poppins = "Poppins",
-	"Roboto Mono" = "Roboto Mono",
+	RobotoMono = "Roboto Mono",
 	Inter = "Inter",
 }
